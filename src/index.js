@@ -1,16 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+class Clock extends React.Component {
 
-class UserForm extends React.Component {
+	state = { time: null }
+
+	componentDidMount() {
+		setInterval(() => {
+			this.setState({ time: new Date().toLocaleTimeString() });
+		}, 1000)
+	}
+
 	render() {
 		return (
-			<form>
-				<label> Enter a username: </label>
-				<input />
-			</form>
+			<div className="time" > The time is: {this.state.time} </div>
 		);
-	};
+	}
 }
 
-ReactDOM.render(<UserForm />, document.querySelector('#root'));
+
+ReactDOM.render(<Clock />, document.querySelector('#root'));
